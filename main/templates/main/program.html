@@ -1,0 +1,26 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>Моя образовательная программа</h2>
+{% if program %}
+    <h3>{{ program.title }}</h3>
+    <p><strong>Ссылка на программу:</strong> <a href="{{ program.url }}" target="_blank">{{ program.url }}</a></p>
+    
+    <h4>Описание программы</h4>
+    <p>{{ program.description }}</p>
+    
+    <h4>Что я буду изучать</h4>
+    <p>{{ program.what_ill_learn }}</p>
+    
+    <h4>Чему я научусь</h4>
+    <p>{{ program.skills }}</p>
+    
+    <h4>Преимущества программы</h4>
+    <p>{{ program.advantages }}</p>
+    
+    <h4>Перспективы после обучения</h4>
+    <p>{{ program.prospects }}</p>
+{% else %}
+    <p>Информация о программе не найдена.</p>
+{% endif %}
+{% endblock %}

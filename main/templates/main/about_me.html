@@ -1,0 +1,14 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>Обо мне</h2>
+{% if student %}
+    <img src="{{ student.photo.url }}" alt="{{ student.full_name }}" class="profile-img">
+    <h3>{{ student.full_name }}</h3>
+    <p><strong>Email:</strong> {{ student.email }}</p>
+    <p><strong>Телефон:</strong> {{ student.phone }}</p>
+    <p><strong>Резюме:</strong> <a href="{{ student.resume.url }}" download>Скачать</a></p>
+{% else %}
+    <p>Информация о студенте не найдена.</p>
+{% endif %}
+{% endblock %}

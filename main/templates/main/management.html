@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>Менеджмент образовательной программы</h2>
+
+{% if academic_leader %}
+    <h3>Академический руководитель</h3>
+    <img src="{{ academic_leader.photo.url }}" alt="{{ academic_leader.full_name }}" width="150">
+    <p><strong>{{ academic_leader.full_name }}</strong></p>
+    <p>Email: {{ academic_leader.email }}</p>
+{% else %}
+    <p>Информация об академическом руководителе не найдена.</p>
+{% endif %}
+
+{% if managers %}
+    <h3>Менеджеры программы</h3>
+    {% for manager in managers %}
+        <div style="margin-bottom: 20px;">
+            <img src="{{ manager.photo.url }}" alt="{{ manager.full_name }}" width="150">
+            <p><strong>{{ manager.full_name }}</strong></p>
+            <p>Email: {{ manager.email }}</p>
+        </div>
+    {% endfor %}
+{% else %}
+    <p>Информация о менеджерах программы не найдена.</p>
+{% endif %}
+{% endblock %}

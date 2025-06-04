@@ -1,0 +1,27 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h2>Мои сокурсники</h2>
+
+<form method="get" action="{% url 'classmates' %}">
+    <input type="text" name="search" placeholder="Поиск по имени" value="{{ request.GET.search }}">
+    <button type="submit">Искать</button>
+</form>
+
+{% if classmates %}
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 20px;">
+        {% for classmate in classmates %}
+            <div style="border: 1px solid #ddd; padding: 15px; width: 250px;">
+                <img src="{{ classmate.photo.url }}" alt="{{ classmate.full_name }}" width="100%">
+                <h3>{{ classmate.full_name }}</h3>
+                <p>Email: {{ classmate.email }}</p>
+                {% if classmate.phone %}
+                    <p>Телефон: {{ classmate.phone }}</p>
+                {% endif %}
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>Информация о сокурсниках не найдена.</p>
+{% endif %}
+{% endblock %}
