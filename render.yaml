@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: edu-program
+    runtime: python
+    buildCommand: "./build.sh"
+    startCommand: "gunicorn edu_program.wsgi:application"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: edu-program-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: WEB_CONCURRENCY
+        value: 4
